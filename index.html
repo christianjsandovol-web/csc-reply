@@ -1,10 +1,29 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Opening your messages...</title>
-<style>body{margin:0;font-family:Helvetica,Arial,sans-serif;background:#f4f8fc;color:#00386B;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center}.c{padding:32px}a.b{display:inline-block;margin-top:20px;padding:18px 36px;background:#0072CE;color:#fff;border-radius:10px;font-size:20px;font-weight:bold;text-decoration:none}</style></head>
-<body><div class="c"><h2>Opening your messages...</h2><p id="m">If nothing happens, tap below.</p><a id="b" class="b" href="sms:+17205277357">Text Christian</a></div>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Thank you</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Helvetica,Arial,sans-serif;background:linear-gradient(160deg,#00386B,#0072CE);min-height:100vh;display:flex;align-items:center;justify-content:center;color:#00386B;overflow:hidden}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:5}
+.card{position:relative;z-index:2;background:#fff;border-radius:24px;max-width:480px;width:calc(100% - 40px);padding:42px 28px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.35);animation:pop .7s cubic-bezier(.2,1.4,.4,1)}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+.brand{font-size:12px;letter-spacing:4px;font-weight:700;color:#0072CE}
+.big{font-size:64px;margin:14px 0 4px;animation:bounce 1.2s ease infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+h1{font-size:30px;margin:8px 0 10px}
+p{font-size:17px;line-height:26px;color:#334155;margin:0 0 8px}
+.sig{margin-top:22px;font-weight:800;font-size:18px}.sig span{display:block;color:#0072CE;font-size:15px}
+</style></head><body><canvas id="c"></canvas>
+<div class="card"><div class="brand">CREDIT SWEEP CLUB</div><div class="big" id="e">🎉</div><h1 id="h">Thank you!</h1><p id="p"></p><div class="sig">Christian Sandoval<span>Your Credit Repair Guy</span></div></div>
 <script>
-var p=new URLSearchParams(location.search),a=(p.get('a')||'').toLowerCase(),n=(p.get('n')||'').trim().slice(0,80);
-var who=n?' - '+n:'';var body=a==='yes'?'YES'+who+', include me':a==='no'?'NO'+who+', not right now':'Hi Christian'+who;
-var sep=/android/i.test(navigator.userAgent)?'?body=':'?&body=';var url='sms:+17205277357'+sep+encodeURIComponent(body);
-document.getElementById('b').href=url;document.getElementById('b').textContent=a==='no'?'Text NO':a==='yes'?'Text YES':'Text Christian';
-window.location.replace(url);
+var HOOK="https://hooks.airtable.com/workflows/v1/genericWebhook/appb3jA5rEmVOMqar/wflhEr3Misu7EEzoO/wtrhU2LpV4BWwS9RX";
+var q=new URLSearchParams(location.search),a=(q.get('a')||'').toLowerCase(),n=(q.get('n')||'').trim().slice(0,80);
+var first=n.split(' ')[0]||'';var yes=a!=='no';
+document.getElementById('e').textContent=yes?'🎉':'🙏';
+document.getElementById('h').textContent=yes?('You\'re in'+(first?', '+first:'')+'!'):('Thank you'+(first?', '+first:'')+'.');
+document.getElementById('p').textContent=yes?'Thank you! Christian will message you soon with your next steps.':'I appreciate you letting me know. Christian will reach out to you personally soon.';
+if(a==='yes'||a==='no'){try{var k='sent_'+a+'_'+n;if(!sessionStorage.getItem(k)){sessionStorage.setItem(k,'1');var body=JSON.stringify({name:n||'Unknown',answer:a.toUpperCase()});
+fetch(HOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:body}).catch(function(){if(navigator.sendBeacon)navigator.sendBeacon(HOOK,body)})}}catch(e){}}
+if(yes){var c=document.getElementById('c'),x=c.getContext('2d');function rs(){c.width=innerWidth;c.height=innerHeight}rs();onresize=rs;
+var cols=['#0072CE','#00386B','#F58220','#FFD23F','#2EC4B6','#FF5D8F','#FFFFFF'];var P=[];
+function burst(cx,cy,m){for(var i=0;i<m;i++){var an=Math.random()*Math.PI*2,sp=4+Math.random()*10;P.push({x:cx,y:cy,vx:Math.cos(an)*sp,vy:Math.sin(an)*sp-6,w:6+Math.random()*8,h:4+Math.random()*6,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:cols[Math.floor(Math.random()*cols.length)],l:140+Math.random()*80})}}
+burst(innerWidth/2,innerHeight/2,180);setTimeout(function(){burst(innerWidth*.2,innerHeight*.35,90);burst(innerWidth*.8,innerHeight*.35,90)},350);setTimeout(function(){burst(innerWidth/2,innerHeight*.3,120)},800);
+(function f(){x.clearRect(0,0,c.width,c.height);P=P.filter(function(p){return p.l>0});P.forEach(function(p){p.vy+=.28;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.l--;x.save();x.globalAlpha=Math.min(1,p.l/40);x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(-p.w/2,-p.h/2,p.w,p.h);x.restore()});requestAnimationFrame(f)})()}
 </script></body></html>
