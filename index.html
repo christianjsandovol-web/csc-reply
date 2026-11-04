@@ -9,13 +9,14 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:5}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 h1{font-size:30px;margin:8px 0 10px}
 p{font-size:17px;line-height:26px;color:#334155;margin:0 0 8px}
-.sig{margin-top:22px;font-weight:800;font-size:18px}.sig span{display:block;color:#0072CE;font-size:15px}
+.tb{display:inline-block;margin-top:18px;background:#0072CE;color:#fff;text-decoration:none;font-weight:700;font-size:18px;padding:16px 30px;border-radius:40px;box-shadow:0 6px 18px rgba(0,114,206,.45);animation:pulse 1.6s ease infinite}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}.small{font-size:13px;color:#64748B;margin-top:10px}.sig{margin-top:22px;font-weight:800;font-size:18px}.sig span{display:block;color:#0072CE;font-size:15px}
 </style></head><body><canvas id="c"></canvas>
-<div class="card"><div class="brand">CREDIT SWEEP CLUB</div><div class="big" id="e">🎉</div><h1 id="h">Thank you!</h1><p id="p"></p><div class="sig">Christian Sandoval<span>Your Credit Repair Guy</span></div></div>
+<div class="card"><div class="brand">CREDIT SWEEP CLUB</div><div class="big" id="e">🎉</div><h1 id="h">Thank you!</h1><p id="p"></p><a id="t" class="tb" href="#">💬 Text Christian now</a><div class="small" id="s">One tap opens your messages with your answer ready to send.</div><div class="sig">Christian Sandoval<span>Your Credit Repair Guy</span></div></div>
 <script>
 var HOOK="https://hooks.airtable.com/workflows/v1/genericWebhook/appb3jA5rEmVOMqar/wflhEr3Misu7EEzoO/wtrhU2LpV4BWwS9RX";
 var q=new URLSearchParams(location.search),a=(q.get('a')||'').toLowerCase(),n=(q.get('n')||'').trim().slice(0,80);
 var first=n.split(' ')[0]||'';var yes=a!=='no';
+(function(){var m=(a==='no'?'NO':'YES')+(n?' - '+n:'');var ios=/iPhone|iPad|iPod/.test(navigator.userAgent);document.getElementById('t').href='sms:+17205277357'+(ios?'&':'?')+'body='+encodeURIComponent(m)})();
 document.getElementById('e').textContent=yes?'🎉':'🙏';
 document.getElementById('h').textContent=yes?('You\'re in'+(first?', '+first:'')+'!'):('Thank you'+(first?', '+first:'')+'.');
 document.getElementById('p').textContent=yes?'Thank you! Christian will message you soon with your next steps.':'I appreciate you letting me know. Christian will reach out to you personally soon.';
