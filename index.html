@@ -11,7 +11,7 @@ h1{font-size:30px;margin:8px 0 10px}
 p{font-size:17px;line-height:26px;color:#334155;margin:0 0 8px}
 .tb{display:inline-block;margin-top:18px;background:#0072CE;color:#fff;text-decoration:none;font-weight:700;font-size:18px;padding:16px 30px;border-radius:40px;box-shadow:0 6px 18px rgba(0,114,206,.45);animation:pulse 1.6s ease infinite}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}.small{font-size:13px;color:#64748B;margin-top:10px}.sig{margin-top:22px;font-weight:800;font-size:18px}.sig span{display:block;color:#0072CE;font-size:15px}
 </style></head><body><canvas id="c"></canvas>
-<div class="card"><div class="brand">CREDIT SWEEP CLUB</div><div class="big" id="e">🎉</div><h1 id="h">Thank you!</h1><p id="p"></p><a id="t" class="tb" href="#">💬 Text Christian now</a><div class="small" id="s">One tap opens your messages with your answer ready to send.</div><div class="sig">Christian Sandoval<span>Your Credit Repair Guy</span></div></div>
+<div class="card"><div class="brand">CREDIT SWEEP CLUB</div><div class="big" id="e">🎉</div><h1 id="h">Thank you!</h1><p id="p"></p><a id="t" class="tb" href="#">💬 Text Christian now</a><div class="small" id="s">Opening your messages now… if nothing happens, tap the button.</div><div class="sig">Christian Sandoval<span>Your Credit Repair Guy</span></div></div>
 <script>
 var HOOK="https://hooks.airtable.com/workflows/v1/genericWebhook/appb3jA5rEmVOMqar/wflhEr3Misu7EEzoO/wtrhU2LpV4BWwS9RX";
 var q=new URLSearchParams(location.search),a=(q.get('a')||'').toLowerCase(),n=(q.get('n')||'').trim().slice(0,80);
@@ -21,10 +21,11 @@ document.getElementById('e').textContent=yes?'🎉':'🙏';
 document.getElementById('h').textContent=yes?('You\'re in'+(first?', '+first:'')+'!'):('Thank you'+(first?', '+first:'')+'.');
 document.getElementById('p').textContent=yes?'Thank you! Christian will message you soon with your next steps.':'I appreciate you letting me know. Christian will reach out to you personally soon.';
 if(a==='yes'||a==='no'){try{var k='sent_'+a+'_'+n;if(!sessionStorage.getItem(k)){sessionStorage.setItem(k,'1');var body=JSON.stringify({name:n||'Unknown',answer:a.toUpperCase()});
-fetch(HOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:body}).catch(function(){if(navigator.sendBeacon)navigator.sendBeacon(HOOK,body)})}}catch(e){}}
+fetch(HOOK,{keepalive:true,method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:body}).catch(function(){if(navigator.sendBeacon)navigator.sendBeacon(HOOK,body)})}}catch(e){}}
 if(yes){var c=document.getElementById('c'),x=c.getContext('2d');function rs(){c.width=innerWidth;c.height=innerHeight}rs();onresize=rs;
 var cols=['#0072CE','#00386B','#F58220','#FFD23F','#2EC4B6','#FF5D8F','#FFFFFF'];var P=[];
 function burst(cx,cy,m){for(var i=0;i<m;i++){var an=Math.random()*Math.PI*2,sp=4+Math.random()*10;P.push({x:cx,y:cy,vx:Math.cos(an)*sp,vy:Math.sin(an)*sp-6,w:6+Math.random()*8,h:4+Math.random()*6,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:cols[Math.floor(Math.random()*cols.length)],l:140+Math.random()*80})}}
 burst(innerWidth/2,innerHeight/2,180);setTimeout(function(){burst(innerWidth*.2,innerHeight*.35,90);burst(innerWidth*.8,innerHeight*.35,90)},350);setTimeout(function(){burst(innerWidth/2,innerHeight*.3,120)},800);
 (function f(){x.clearRect(0,0,c.width,c.height);P=P.filter(function(p){return p.l>0});P.forEach(function(p){p.vy+=.28;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.l--;x.save();x.globalAlpha=Math.min(1,p.l/40);x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(-p.w/2,-p.h/2,p.w,p.h);x.restore()});requestAnimationFrame(f)})()}
+setTimeout(function(){var l=document.getElementById('t').href;if(a==='yes'||a==='no')location.href=l},1300);
 </script></body></html>
