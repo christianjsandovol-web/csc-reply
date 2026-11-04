@@ -1,0 +1,10 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Opening your messages...</title>
+<style>body{margin:0;font-family:Helvetica,Arial,sans-serif;background:#f4f8fc;color:#00386B;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center}.c{padding:32px}a.b{display:inline-block;margin-top:20px;padding:18px 36px;background:#0072CE;color:#fff;border-radius:10px;font-size:20px;font-weight:bold;text-decoration:none}</style></head>
+<body><div class="c"><h2>Opening your messages...</h2><p id="m">If nothing happens, tap below.</p><a id="b" class="b" href="sms:+17205277357">Text Christian</a></div>
+<script>
+var p=new URLSearchParams(location.search),a=(p.get('a')||'').toLowerCase(),n=(p.get('n')||'').trim().slice(0,80);
+var who=n?' - '+n:'';var body=a==='yes'?'YES'+who+', include me':a==='no'?'NO'+who+', not right now':'Hi Christian'+who;
+var sep=/android/i.test(navigator.userAgent)?'?body=':'?&body=';var url='sms:+17205277357'+sep+encodeURIComponent(body);
+document.getElementById('b').href=url;document.getElementById('b').textContent=a==='no'?'Text NO':a==='yes'?'Text YES':'Text Christian';
+setTimeout(function(){window.location.href=url},300);
+</script></body></html>
