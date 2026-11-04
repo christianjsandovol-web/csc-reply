@@ -6,5 +6,5 @@ var p=new URLSearchParams(location.search),a=(p.get('a')||'').toLowerCase(),n=(p
 var who=n?' - '+n:'';var body=a==='yes'?'YES'+who+', include me':a==='no'?'NO'+who+', not right now':'Hi Christian'+who;
 var sep=/android/i.test(navigator.userAgent)?'?body=':'?&body=';var url='sms:+17205277357'+sep+encodeURIComponent(body);
 document.getElementById('b').href=url;document.getElementById('b').textContent=a==='no'?'Text NO':a==='yes'?'Text YES':'Text Christian';
-setTimeout(function(){window.location.href=url},300);
+window.location.replace(url);
 </script></body></html>
